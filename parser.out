@@ -1,0 +1,563 @@
+Created by PLY version 3.8 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> calc
+Rule 1     calc -> GATO expression
+Rule 2     calc -> GATO var_assing
+Rule 3     calc -> GATO empty
+Rule 4     var_assing -> ID IGUAL expression
+Rule 5     expression -> expression SUMA expression
+Rule 6     expression -> expression RESTA expression
+Rule 7     expression -> expression MUL expression
+Rule 8     expression -> expression DIV expression
+Rule 9     expression -> expression POTEN expression
+Rule 10    expression -> expression MOD expression
+Rule 11    expression -> PARABRE expression PARCIERRA
+Rule 12    expression -> INT
+Rule 13    expression -> FLOAT
+Rule 14    expression -> ID
+Rule 15    empty -> <empty>
+
+Terminals, with rules where they appear
+
+DIV                  : 8
+FLOAT                : 13
+GATO                 : 1 2 3
+ID                   : 4 14
+IGUAL                : 4
+INT                  : 12
+MOD                  : 10
+MUL                  : 7
+PARABRE              : 11
+PARCIERRA            : 11
+POTEN                : 9
+RESTA                : 6
+SUMA                 : 5
+error                : 
+
+Nonterminals, with rules where they appear
+
+calc                 : 0
+empty                : 3
+expression           : 1 4 5 5 6 6 7 7 8 8 9 9 10 10 11
+var_assing           : 2
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . calc
+    (1) calc -> . GATO expression
+    (2) calc -> . GATO var_assing
+    (3) calc -> . GATO empty
+
+    GATO            shift and go to state 2
+
+    calc                           shift and go to state 1
+
+state 1
+
+    (0) S' -> calc .
+
+
+
+state 2
+
+    (1) calc -> GATO . expression
+    (2) calc -> GATO . var_assing
+    (3) calc -> GATO . empty
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+    (4) var_assing -> . ID IGUAL expression
+    (15) empty -> .
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 9
+    $end            reduce using rule 15 (empty -> .)
+
+    expression                     shift and go to state 3
+    var_assing                     shift and go to state 4
+    empty                          shift and go to state 5
+
+state 3
+
+    (1) calc -> GATO expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    $end            reduce using rule 1 (calc -> GATO expression .)
+    SUMA            shift and go to state 10
+    RESTA           shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+
+state 4
+
+    (2) calc -> GATO var_assing .
+
+    $end            reduce using rule 2 (calc -> GATO var_assing .)
+
+
+state 5
+
+    (3) calc -> GATO empty .
+
+    $end            reduce using rule 3 (calc -> GATO empty .)
+
+
+state 6
+
+    (11) expression -> PARABRE . expression PARCIERRA
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 16
+
+state 7
+
+    (12) expression -> INT .
+
+    SUMA            reduce using rule 12 (expression -> INT .)
+    RESTA           reduce using rule 12 (expression -> INT .)
+    MUL             reduce using rule 12 (expression -> INT .)
+    DIV             reduce using rule 12 (expression -> INT .)
+    POTEN           reduce using rule 12 (expression -> INT .)
+    MOD             reduce using rule 12 (expression -> INT .)
+    $end            reduce using rule 12 (expression -> INT .)
+    PARCIERRA       reduce using rule 12 (expression -> INT .)
+
+
+state 8
+
+    (13) expression -> FLOAT .
+
+    SUMA            reduce using rule 13 (expression -> FLOAT .)
+    RESTA           reduce using rule 13 (expression -> FLOAT .)
+    MUL             reduce using rule 13 (expression -> FLOAT .)
+    DIV             reduce using rule 13 (expression -> FLOAT .)
+    POTEN           reduce using rule 13 (expression -> FLOAT .)
+    MOD             reduce using rule 13 (expression -> FLOAT .)
+    $end            reduce using rule 13 (expression -> FLOAT .)
+    PARCIERRA       reduce using rule 13 (expression -> FLOAT .)
+
+
+state 9
+
+    (14) expression -> ID .
+    (4) var_assing -> ID . IGUAL expression
+
+    SUMA            reduce using rule 14 (expression -> ID .)
+    RESTA           reduce using rule 14 (expression -> ID .)
+    MUL             reduce using rule 14 (expression -> ID .)
+    DIV             reduce using rule 14 (expression -> ID .)
+    POTEN           reduce using rule 14 (expression -> ID .)
+    MOD             reduce using rule 14 (expression -> ID .)
+    $end            reduce using rule 14 (expression -> ID .)
+    IGUAL           shift and go to state 18
+
+
+state 10
+
+    (5) expression -> expression SUMA . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 19
+
+state 11
+
+    (6) expression -> expression RESTA . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 20
+
+state 12
+
+    (7) expression -> expression MUL . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 21
+
+state 13
+
+    (8) expression -> expression DIV . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 22
+
+state 14
+
+    (9) expression -> expression POTEN . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 23
+
+state 15
+
+    (10) expression -> expression MOD . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 24
+
+state 16
+
+    (11) expression -> PARABRE expression . PARCIERRA
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    PARCIERRA       shift and go to state 25
+    SUMA            shift and go to state 10
+    RESTA           shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+
+state 17
+
+    (14) expression -> ID .
+
+    PARCIERRA       reduce using rule 14 (expression -> ID .)
+    SUMA            reduce using rule 14 (expression -> ID .)
+    RESTA           reduce using rule 14 (expression -> ID .)
+    MUL             reduce using rule 14 (expression -> ID .)
+    DIV             reduce using rule 14 (expression -> ID .)
+    POTEN           reduce using rule 14 (expression -> ID .)
+    MOD             reduce using rule 14 (expression -> ID .)
+    $end            reduce using rule 14 (expression -> ID .)
+
+
+state 18
+
+    (4) var_assing -> ID IGUAL . expression
+    (5) expression -> . expression SUMA expression
+    (6) expression -> . expression RESTA expression
+    (7) expression -> . expression MUL expression
+    (8) expression -> . expression DIV expression
+    (9) expression -> . expression POTEN expression
+    (10) expression -> . expression MOD expression
+    (11) expression -> . PARABRE expression PARCIERRA
+    (12) expression -> . INT
+    (13) expression -> . FLOAT
+    (14) expression -> . ID
+
+    PARABRE         shift and go to state 6
+    INT             shift and go to state 7
+    FLOAT           shift and go to state 8
+    ID              shift and go to state 17
+
+    expression                     shift and go to state 26
+
+state 19
+
+    (5) expression -> expression SUMA expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 5 (expression -> expression SUMA expression .)
+    RESTA           reduce using rule 5 (expression -> expression SUMA expression .)
+    $end            reduce using rule 5 (expression -> expression SUMA expression .)
+    PARCIERRA       reduce using rule 5 (expression -> expression SUMA expression .)
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+  ! MUL             [ reduce using rule 5 (expression -> expression SUMA expression .) ]
+  ! DIV             [ reduce using rule 5 (expression -> expression SUMA expression .) ]
+  ! POTEN           [ reduce using rule 5 (expression -> expression SUMA expression .) ]
+  ! MOD             [ reduce using rule 5 (expression -> expression SUMA expression .) ]
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+
+
+state 20
+
+    (6) expression -> expression RESTA expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 6 (expression -> expression RESTA expression .)
+    RESTA           reduce using rule 6 (expression -> expression RESTA expression .)
+    $end            reduce using rule 6 (expression -> expression RESTA expression .)
+    PARCIERRA       reduce using rule 6 (expression -> expression RESTA expression .)
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+  ! MUL             [ reduce using rule 6 (expression -> expression RESTA expression .) ]
+  ! DIV             [ reduce using rule 6 (expression -> expression RESTA expression .) ]
+  ! POTEN           [ reduce using rule 6 (expression -> expression RESTA expression .) ]
+  ! MOD             [ reduce using rule 6 (expression -> expression RESTA expression .) ]
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+
+
+state 21
+
+    (7) expression -> expression MUL expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 7 (expression -> expression MUL expression .)
+    RESTA           reduce using rule 7 (expression -> expression MUL expression .)
+    MUL             reduce using rule 7 (expression -> expression MUL expression .)
+    DIV             reduce using rule 7 (expression -> expression MUL expression .)
+    $end            reduce using rule 7 (expression -> expression MUL expression .)
+    PARCIERRA       reduce using rule 7 (expression -> expression MUL expression .)
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+  ! POTEN           [ reduce using rule 7 (expression -> expression MUL expression .) ]
+  ! MOD             [ reduce using rule 7 (expression -> expression MUL expression .) ]
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+  ! MUL             [ shift and go to state 12 ]
+  ! DIV             [ shift and go to state 13 ]
+
+
+state 22
+
+    (8) expression -> expression DIV expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 8 (expression -> expression DIV expression .)
+    RESTA           reduce using rule 8 (expression -> expression DIV expression .)
+    MUL             reduce using rule 8 (expression -> expression DIV expression .)
+    DIV             reduce using rule 8 (expression -> expression DIV expression .)
+    $end            reduce using rule 8 (expression -> expression DIV expression .)
+    PARCIERRA       reduce using rule 8 (expression -> expression DIV expression .)
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
+  ! POTEN           [ reduce using rule 8 (expression -> expression DIV expression .) ]
+  ! MOD             [ reduce using rule 8 (expression -> expression DIV expression .) ]
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+  ! MUL             [ shift and go to state 12 ]
+  ! DIV             [ shift and go to state 13 ]
+
+
+state 23
+
+    (9) expression -> expression POTEN expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 9 (expression -> expression POTEN expression .)
+    RESTA           reduce using rule 9 (expression -> expression POTEN expression .)
+    MUL             reduce using rule 9 (expression -> expression POTEN expression .)
+    DIV             reduce using rule 9 (expression -> expression POTEN expression .)
+    POTEN           reduce using rule 9 (expression -> expression POTEN expression .)
+    MOD             reduce using rule 9 (expression -> expression POTEN expression .)
+    $end            reduce using rule 9 (expression -> expression POTEN expression .)
+    PARCIERRA       reduce using rule 9 (expression -> expression POTEN expression .)
+
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+  ! MUL             [ shift and go to state 12 ]
+  ! DIV             [ shift and go to state 13 ]
+  ! POTEN           [ shift and go to state 14 ]
+  ! MOD             [ shift and go to state 15 ]
+
+
+state 24
+
+    (10) expression -> expression MOD expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    SUMA            reduce using rule 10 (expression -> expression MOD expression .)
+    RESTA           reduce using rule 10 (expression -> expression MOD expression .)
+    MUL             reduce using rule 10 (expression -> expression MOD expression .)
+    DIV             reduce using rule 10 (expression -> expression MOD expression .)
+    POTEN           reduce using rule 10 (expression -> expression MOD expression .)
+    MOD             reduce using rule 10 (expression -> expression MOD expression .)
+    $end            reduce using rule 10 (expression -> expression MOD expression .)
+    PARCIERRA       reduce using rule 10 (expression -> expression MOD expression .)
+
+  ! SUMA            [ shift and go to state 10 ]
+  ! RESTA           [ shift and go to state 11 ]
+  ! MUL             [ shift and go to state 12 ]
+  ! DIV             [ shift and go to state 13 ]
+  ! POTEN           [ shift and go to state 14 ]
+  ! MOD             [ shift and go to state 15 ]
+
+
+state 25
+
+    (11) expression -> PARABRE expression PARCIERRA .
+
+    SUMA            reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    RESTA           reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    MUL             reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    DIV             reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    POTEN           reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    MOD             reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    $end            reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+    PARCIERRA       reduce using rule 11 (expression -> PARABRE expression PARCIERRA .)
+
+
+state 26
+
+    (4) var_assing -> ID IGUAL expression .
+    (5) expression -> expression . SUMA expression
+    (6) expression -> expression . RESTA expression
+    (7) expression -> expression . MUL expression
+    (8) expression -> expression . DIV expression
+    (9) expression -> expression . POTEN expression
+    (10) expression -> expression . MOD expression
+
+    $end            reduce using rule 4 (var_assing -> ID IGUAL expression .)
+    SUMA            shift and go to state 10
+    RESTA           shift and go to state 11
+    MUL             shift and go to state 12
+    DIV             shift and go to state 13
+    POTEN           shift and go to state 14
+    MOD             shift and go to state 15
+
