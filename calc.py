@@ -4,7 +4,11 @@ from glob import glob
 import ply.lex as lex #analizador léxico
 import ply.yacc as yacc #analizaodor sintáctico
 import sys
+from colorama import Fore
+from colorama import Style
+import re
 
+# ====================== Analizador Lexico ======================
 # lista de tokens que identifica la gramática
 tokens = [
     'INT',
@@ -17,14 +21,14 @@ tokens = [
     'IGUAL',
     'POTEN',
     'MOD',
-    'GATO',
+    'VIRGULILLA',
     'PARABRE',
     'PARCIERRA'
 ]
 
 # ply usa t_<nombre token> para interpretar el token
-#gato
-t_GATO = r'\#'
+#virgulilla
+t_VIRGULILLA = r'\~'
 # suma
 t_SUMA = r'\+'
 # resta
@@ -67,7 +71,12 @@ def t_error(t): # manejo de errores
     print("Caracter invalido.")
     t.lexer.skip(1)
 
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += t.value.count("\n")
+
 lexer = lex.lex()
+# ====================== Analizador Sintactico ======================
 
 precedence = (
     ('left', 'SUMA', 'RESTA'),
@@ -75,11 +84,15 @@ precedence = (
     ('left','POTEN','MOD')
 )
  
+def p_instrucciones_lista(t):
+    '''instrucciones    : calc instrucciones
+                        | calc ''' 
+
 def p_calc(p):
     '''
-    calc :  GATO expression 
-         |  GATO var_assing 
-         |  GATO empty 
+    calc :  VIRGULILLA expression 
+         |  VIRGULILLA var_assing 
+         |  VIRGULILLA empty 
     '''
     print(run(p[2]))
 
@@ -123,7 +136,7 @@ def p_expression_var(p):
 
 
 def p_error(p):
-    print("error de sintaxis")
+    print(Fore.RED + Style.DIM + "Error de sintaxis" + Style.RESET_ALL)
 
 def p_empty(p):
     '''
@@ -156,15 +169,24 @@ def run(p):
             return run(p[1]%p[2])
         elif p[0] == '=':
             env[p[1]] = run(p[2])      
+            print(Fore.CYAN + Style.DIM + "MEMORIA: " + str(env) + Style.RESET_ALL)
     else:
         return p
 
-while True:
-    print("\nIngresa la operacion a realizar")
-    try:
-        s = input('//')
-        parser.parse(s)
-    except ValueError as e:
-        print(e)
-    
-    
+f = open("./code.dbell", "r")
+input = f.read()
+print(Fore.BLACK + Style.DIM + "---------------- Entrada ----------------\n" + Style.RESET_ALL)
+print(input)
+print(Fore.BLACK + Style.DIM + "\n---------------- Salida ----------------" + Style.RESET_ALL)
+try:
+    parser.parse(input)
+except ValueError as e:
+    print(Fore.RED + Style.DIM + "ERROR: " + str(e) + Style.RESET_ALL) 
+
+# while True:
+#     print("\nIngresa la operacion a realizar")
+#     try:
+#         s = input('->')
+#         parser.parse(s)
+#     except ValueError as e:
+#         print(e) 

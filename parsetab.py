@@ -5,9 +5,9 @@ _tabversion = '3.8'
 
 _lr_method = 'LALR'
 
-_lr_signature = '301DCE8F1D5FA693ECF2DDEA718D1647'
+_lr_signature = '773D7DC7AD2229B9E217F987D45D2785'
     
-_lr_action_items = {'GATO':([0,],[2,]),'$end':([1,2,3,4,5,7,8,9,17,19,20,21,22,23,24,25,26,],[0,-15,-1,-2,-3,-12,-13,-14,-14,-5,-6,-7,-8,-9,-10,-11,-4,]),'PARABRE':([2,6,10,11,12,13,14,15,18,],[6,6,6,6,6,6,6,6,6,]),'INT':([2,6,10,11,12,13,14,15,18,],[7,7,7,7,7,7,7,7,7,]),'FLOAT':([2,6,10,11,12,13,14,15,18,],[8,8,8,8,8,8,8,8,8,]),'ID':([2,6,10,11,12,13,14,15,18,],[9,17,17,17,17,17,17,17,17,]),'SUMA':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[10,-12,-13,-14,10,-14,-5,-6,-7,-8,-9,-10,-11,10,]),'RESTA':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[11,-12,-13,-14,11,-14,-5,-6,-7,-8,-9,-10,-11,11,]),'MUL':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[12,-12,-13,-14,12,-14,12,12,-7,-8,-9,-10,-11,12,]),'DIV':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[13,-12,-13,-14,13,-14,13,13,-7,-8,-9,-10,-11,13,]),'POTEN':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[14,-12,-13,-14,14,-14,14,14,14,14,-9,-10,-11,14,]),'MOD':([3,7,8,9,16,17,19,20,21,22,23,24,25,26,],[15,-12,-13,-14,15,-14,15,15,15,15,-9,-10,-11,15,]),'PARCIERRA':([7,8,16,17,19,20,21,22,23,24,25,],[-12,-13,25,-14,-5,-6,-7,-8,-9,-10,-11,]),'IGUAL':([9,],[18,]),}
+_lr_action_items = {'VIRGULILLA':([0,2,3,5,6,7,9,10,11,19,21,22,23,24,25,26,27,28,],[3,3,-17,-3,-4,-5,-14,-15,-16,-16,-7,-8,-9,-10,-11,-12,-13,-6,]),'$end':([1,2,3,4,5,6,7,9,10,11,19,21,22,23,24,25,26,27,28,],[0,-2,-17,-1,-3,-4,-5,-14,-15,-16,-16,-7,-8,-9,-10,-11,-12,-13,-6,]),'PARABRE':([3,8,12,13,14,15,16,17,20,],[8,8,8,8,8,8,8,8,8,]),'INT':([3,8,12,13,14,15,16,17,20,],[9,9,9,9,9,9,9,9,9,]),'FLOAT':([3,8,12,13,14,15,16,17,20,],[10,10,10,10,10,10,10,10,10,]),'ID':([3,8,12,13,14,15,16,17,20,],[11,19,19,19,19,19,19,19,19,]),'SUMA':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[12,-14,-15,-16,12,-16,-7,-8,-9,-10,-11,-12,-13,12,]),'RESTA':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[13,-14,-15,-16,13,-16,-7,-8,-9,-10,-11,-12,-13,13,]),'MUL':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[14,-14,-15,-16,14,-16,14,14,-9,-10,-11,-12,-13,14,]),'DIV':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[15,-14,-15,-16,15,-16,15,15,-9,-10,-11,-12,-13,15,]),'POTEN':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[16,-14,-15,-16,16,-16,16,16,16,16,-11,-12,-13,16,]),'MOD':([5,9,10,11,18,19,21,22,23,24,25,26,27,28,],[17,-14,-15,-16,17,-16,17,17,17,17,-11,-12,-13,17,]),'PARCIERRA':([9,10,18,19,21,22,23,24,25,26,27,],[-14,-15,27,-16,-7,-8,-9,-10,-11,-12,-13,]),'IGUAL':([11,],[20,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'calc':([0,],[1,]),'expression':([2,6,10,11,12,13,14,15,18,],[3,16,19,20,21,22,23,24,26,]),'var_assing':([2,],[4,]),'empty':([2,],[5,]),}
+_lr_goto_items = {'instrucciones':([0,2,],[1,4,]),'calc':([0,2,],[2,2,]),'expression':([3,8,12,13,14,15,16,17,20,],[5,18,21,22,23,24,25,26,28,]),'var_assing':([3,],[6,]),'empty':([3,],[7,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -25,20 +25,22 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> calc","S'",1,None,None,None),
-  ('calc -> GATO expression','calc',2,'p_calc','calc.py',80),
-  ('calc -> GATO var_assing','calc',2,'p_calc','calc.py',81),
-  ('calc -> GATO empty','calc',2,'p_calc','calc.py',82),
-  ('var_assing -> ID IGUAL expression','var_assing',3,'p_var_assing','calc.py',88),
-  ('expression -> expression SUMA expression','expression',3,'p_expression','calc.py',95),
-  ('expression -> expression RESTA expression','expression',3,'p_expression','calc.py',96),
-  ('expression -> expression MUL expression','expression',3,'p_expression','calc.py',97),
-  ('expression -> expression DIV expression','expression',3,'p_expression','calc.py',98),
-  ('expression -> expression POTEN expression','expression',3,'p_expression','calc.py',99),
-  ('expression -> expression MOD expression','expression',3,'p_expression','calc.py',100),
-  ('expression -> PARABRE expression PARCIERRA','expression',3,'p_expression_par','calc.py',106),
-  ('expression -> INT','expression',1,'p_expression_int_float','calc.py',113),
-  ('expression -> FLOAT','expression',1,'p_expression_int_float','calc.py',114),
-  ('expression -> ID','expression',1,'p_expression_var','calc.py',120),
-  ('empty -> <empty>','empty',0,'p_empty','calc.py',128),
+  ("S' -> instrucciones","S'",1,None,None,None),
+  ('instrucciones -> calc instrucciones','instrucciones',2,'p_instrucciones_lista','calc.py',85),
+  ('instrucciones -> calc','instrucciones',1,'p_instrucciones_lista','calc.py',86),
+  ('calc -> VIRGULILLA expression','calc',2,'p_calc','calc.py',90),
+  ('calc -> VIRGULILLA var_assing','calc',2,'p_calc','calc.py',91),
+  ('calc -> VIRGULILLA empty','calc',2,'p_calc','calc.py',92),
+  ('var_assing -> ID IGUAL expression','var_assing',3,'p_var_assing','calc.py',98),
+  ('expression -> expression SUMA expression','expression',3,'p_expression','calc.py',105),
+  ('expression -> expression RESTA expression','expression',3,'p_expression','calc.py',106),
+  ('expression -> expression MUL expression','expression',3,'p_expression','calc.py',107),
+  ('expression -> expression DIV expression','expression',3,'p_expression','calc.py',108),
+  ('expression -> expression POTEN expression','expression',3,'p_expression','calc.py',109),
+  ('expression -> expression MOD expression','expression',3,'p_expression','calc.py',110),
+  ('expression -> PARABRE expression PARCIERRA','expression',3,'p_expression_par','calc.py',116),
+  ('expression -> INT','expression',1,'p_expression_int_float','calc.py',123),
+  ('expression -> FLOAT','expression',1,'p_expression_int_float','calc.py',124),
+  ('expression -> ID','expression',1,'p_expression_var','calc.py',130),
+  ('empty -> <empty>','empty',0,'p_empty','calc.py',140),
 ]
